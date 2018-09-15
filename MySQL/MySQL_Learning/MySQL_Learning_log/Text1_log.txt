@@ -1,0 +1,491 @@
+mysql> \s
+--------------
+
+Connection id:		37
+Current database:	
+Current user:		root@localhost
+SSL:			Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:	;
+Server version:		8.0.11 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		localhost via TCP/IP
+Server characterset:	utf8
+Db     characterset:	utf8
+Client characterset:	utf8
+Conn.  characterset:	utf8
+TCP port:		3306
+Uptime:			1 day 1 hour 6 min 0 sec
+
+Threads: 2  Questions: 82  Slow queries: 0  Opens: 197  Flush tables: 2  Open tables: 173  Queries per second avg: 0.000
+--------------
+
+mysql> SET NAMES GBK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> \S
+ERROR: 
+Unknown command '\S'.
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\S' at line 1
+mysql> \s
+--------------
+
+Connection id:		37
+Current database:	
+Current user:		root@localhost
+SSL:			Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:	;
+Server version:		8.0.11 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		localhost via TCP/IP
+Server characterset:	utf8
+Db     characterset:	utf8
+Client characterset:	gbk
+Conn.  characterset:	gbk
+TCP port:		3306
+Uptime:			1 day 1 hour 6 min 40 sec
+
+Threads: 2  Questions: 87  Slow queries: 0  Opens: 197  Flush tables: 2  Open tables: 173  Queries per second avg: 0.000
+--------------
+
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> --创建maizi数据库
+    -> CREATE DATABASE IF NOT EXISTS `maizi` CHARACTER SET 'UTF8';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--创建maizi数据�?CREATE DATABASE IF NOT EXISTS `maizi` CHARACTER SET' at line 1
+mysql> 
+mysql> --打开数据库
+    -> USE `maizi`;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--打开数据�?USE `maizi`' at line 1
+mysql> 
+mysql> --创建学员表(user)
+    -> --编号 id
+    -> --用户名 username
+    -> --年龄 age
+    -> --性别 sex
+    -> --邮箱 email
+    -> --地址 addr
+    -> --生日 birth
+    -> --薪水 salary
+    -> --电话 tel
+    -> --是否结婚 married
+    -> --注意：当需要输入中文的时候，需要临时转换客户端的编码方式
+    -> -- SET NAMES GBK;
+    -> -- 字段注释 通过COMMENT 给字段添加注释
+    -> 
+    -> 
+    -> CREATE TABLE IF NOT EXISTS `user` (
+    -> id SMALLINT,
+    -> username VARCHAR(20),
+    -> age TINYINT,
+    -> sex ENUM('男','女','保密'),
+    -> email VARCHAR(50),
+    -> addr VARCHAR(200),
+    -> birth YEAR,
+    -> salary FLOAT(8,2),
+    -> tel INT,
+    -> married TINYINT(1) COMMENT '0代表未结婚，非0代表已婚'
+    -> )ENGINE=INNODB CHARSET=UTF8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--创建学员�?user)
+--编号 id
+--用户�?username
+--年龄' at line 1
+mysql> -- 创建maizi数据库
+mysql> CREATE DATABASE IF NOT EXISTS `maizi` CHARACTER SET 'UTF8';
+Query OK, 1 row affected, 1 warning (0.07 sec)
+
+mysql> 
+mysql> -- 打开数据库
+mysql> USE `maizi`;
+Database changed
+mysql> 
+mysql> -- 创建学员表(user)
+mysql> -- 编号 id
+mysql> -- 用户名 username
+mysql> -- 年龄 age
+mysql> -- 性别 sex
+mysql> -- 邮箱 email
+mysql> -- 地址 addr
+mysql> -- 生日 birth
+mysql> -- 薪水 salary
+mysql> -- 电话 tel
+mysql> -- 是否结婚 married
+mysql> -- 注意：当需要输入中文的时候，需要临时转换客户端的编码方式
+mysql> -- SET NAMES GBK;
+mysql> -- 字段注释 通过COMMENT 给字段添加注释
+mysql> 
+mysql> 
+mysql> CREATE TABLE IF NOT EXISTS `user` (
+    -> id SMALLINT,
+    -> username VARCHAR(20),
+    -> age TINYINT,
+    -> sex ENUM('男','女','保密'),
+    -> email VARCHAR(50),
+    -> addr VARCHAR(200),
+    -> birth YEAR,
+    -> salary FLOAT(8,2),
+    -> tel INT,
+    -> married TINYINT(1) COMMENT '0代表未结婚，非0代表已婚'
+    -> )ENGINE=INNODB CHARSET=UTF8;
+Query OK, 0 rows affected, 2 warnings (0.09 sec)
+
+mysql> SHOW TABLES
+    -> ;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| user            |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> -- 创建课程表course
+mysql> -- 编号cid
+mysql> -- 课程名称courseName
+mysql> -- 课程描述courseDesc
+mysql> CREATE TABLE IF NOT EXISTS course(
+    ->     cid TINYINT,
+    ->     courseName VARCHAR(50),
+    ->     courseDesc VARCHAR(200)
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| course          |
+| user            |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> \S
+ERROR: 
+Unknown command '\S'.
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\S' at line 1
+mysql> \s
+--------------
+
+Connection id:		37
+Current database:	maizi
+Current user:		root@localhost
+SSL:			Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:	;
+Server version:		8.0.11 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		localhost via TCP/IP
+Server characterset:	utf8
+Db     characterset:	utf8
+Client characterset:	gbk
+Conn.  characterset:	gbk
+TCP port:		3306
+Uptime:			1 day 1 hour 28 min 39 sec
+
+Threads: 2  Questions: 104  Slow queries: 0  Opens: 216  Flush tables: 2  Open tables: 192  Queries per second avg: 0.001
+--------------
+
+mysql> -- 创建新闻分类表cms_cate
+mysql> -- 编号，分类名称，分类描述
+mysql> CREATE TABLE IF NOT EXISTS cms_cate(
+    ->     id TINYINT,
+    ->     cateName VARCHAR(50),
+    ->     cateDesc VARCHAR(200),
+    -> )ENGINE=MyISAM CHARSET=UTF8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')ENGINE=MyISAM CHARSET=UTF8' at line 5
+mysql> -- 创建新闻分类表cms_cate
+mysql> -- 编号，分类名称，分类描述
+mysql> CREATE TABLE IF NOT EXISTS cms_cate(
+    ->     id TINYINT,
+    ->     cateName VARCHAR(50),
+    ->     cateDesc VARCHAR(200)
+    -> )ENGINE=MyISAM CHARSET=UTF8;
+Query OK, 0 rows affected, 1 warning (0.13 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| course          |
+| user            |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> -- 创建新闻表cms_news
+mysql> -- 编号，新闻标题，新闻内容，新闻发布时间，点击量，是否置顶
+mysql> CREATE TABLE IF NOT EXISTS cms_news(
+    ->     id INT,
+    ->     title VARCHAR(50),
+    ->     content TEXT,
+    ->     pubTime INT,
+    ->     clickNum INT,
+    ->     isTop TINYINT(1) COMMENT '0代表不置顶，1代表置顶'
+    -> );
+Query OK, 0 rows affected, 1 warning (0.08 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| course          |
+| user            |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESC cms_news;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| title    | varchar(50) | YES  |     | NULL    |       |
+| content  | text        | YES  |     | NULL    |       |
+| pubTime  | int(11)     | YES  |     | NULL    |       |
+| clickNum | int(11)     | YES  |     | NULL    |       |
+| isTop    | tinyint(1)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> DESCRIBE com_news;
+ERROR 1146 (42S02): Table 'maizi.com_news' doesn't exist
+mysql> DESCRIBE cms_news;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| title    | varchar(50) | YES  |     | NULL    |       |
+| content  | text        | YES  |     | NULL    |       |
+| pubTime  | int(11)     | YES  |     | NULL    |       |
+| clickNum | int(11)     | YES  |     | NULL    |       |
+| isTop    | tinyint(1)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SHOW COLUMNS FROM cms_news;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| title    | varchar(50) | YES  |     | NULL    |       |
+| content  | text        | YES  |     | NULL    |       |
+| pubTime  | int(11)     | YES  |     | NULL    |       |
+| clickNum | int(11)     | YES  |     | NULL    |       |
+| isTop    | tinyint(1)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> GREATE TABLE text1(
+    ->     num1 TINYINT,
+    ->     num2 SMALLINT,
+    ->     num3 MEDIUMINT,
+    ->     num4 INT,
+    ->     num5 BIGINT
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GREATE TABLE text1(
+    num1 TINYINT,
+    num2 SMALLINT,
+    num3 MEDIUMINT,
+   ' at line 1
+mysql> -- 测试整型
+mysql> CREATE TABLE text1(
+    ->     num1 TINYINT,
+    ->     num2 SMALLINT,
+    ->     num3 MEDIUMINT,
+    ->     num4 INT,
+    ->     num5 BIGINT
+    -> );
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> DESC text1
+    -> ;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| num1  | tinyint(4)   | YES  |     | NULL    |       |
+| num2  | smallint(6)  | YES  |     | NULL    |       |
+| num3  | mediumint(9) | YES  |     | NULL    |       |
+| num4  | int(11)      | YES  |     | NULL    |       |
+| num5  | bigint(20)   | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> -- 向表中插入记录INSERT tb1_name VALUE|VALUES(值,...)
+mysql> INSERT text1 VALUES(-128,-32768,-8388608,-2147483648,-9223372036854775808);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM text1;
++------+--------+----------+-------------+----------------------+
+| num1 | num2   | num3     | num4        | num5                 |
++------+--------+----------+-------------+----------------------+
+| -128 | -32768 | -8388608 | -2147483648 | -9223372036854775808 |
++------+--------+----------+-------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> -- 无符号UNSIGNED
+mysql> CREATE TABLE text2(
+    ->     num1 TINYINT UNSIGNED,
+    ->     num2 TINYINT
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT text2 VALUES(0,-12);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM text2;
++------+------+
+| num1 | num2 |
++------+------+
+|    0 |  -12 |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT text2 VALUES(-10,-12);
+ERROR 1264 (22003): Out of range value for column 'num1' at row 1
+mysql> -- 零填充 ZEROFILL  加入零填充的时候自动无符号了
+mysql> CREATE TABLE text3(
+    ->     num1 TINYINT ZEROFILL,
+    ->     num2 SMALLINT ZEROFILL,
+    ->     num3 MEDIUMINT ZEROFILL,
+    ->     num4 INT ZEROFILL,
+    ->     num5 BIGINT ZEROFILL
+    -> );
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> DESC text3;
++-------+--------------------------------+------+-----+---------+-------+
+| Field | Type                           | Null | Key | Default | Extra |
++-------+--------------------------------+------+-----+---------+-------+
+| num1  | tinyint(3) unsigned zerofill   | YES  |     | NULL    |       |
+| num2  | smallint(5) unsigned zerofill  | YES  |     | NULL    |       |
+| num3  | mediumint(8) unsigned zerofill | YES  |     | NULL    |       |
+| num4  | int(10) unsigned zerofill      | YES  |     | NULL    |       |
+| num5  | bigint(20) unsigned zerofill   | YES  |     | NULL    |       |
++-------+--------------------------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> -- 插入数据
+mysql> INSERT text3 VALUES(1,1,1,1,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> -- 查询表中所有记录
+mysql> SELECT * FROM text3;
++------+-------+----------+------------+----------------------+
+| num1 | num2  | num3     | num4       | num5                 |
++------+-------+----------+------------+----------------------+
+|  001 | 00001 | 00000001 | 0000000001 | 00000000000000000001 |
++------+-------+----------+------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT text3 VALUES(1233,1,1,1,1);
+ERROR 1264 (22003): Out of range value for column 'num1' at row 1
+mysql> INSERT text3 VALUES(123,1,1,1,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM text3;
++------+-------+----------+------------+----------------------+
+| num1 | num2  | num3     | num4       | num5                 |
++------+-------+----------+------------+----------------------+
+|  001 | 00001 | 00000001 | 0000000001 | 00000000000000000001 |
+|  123 | 00001 | 00000001 | 0000000001 | 00000000000000000001 |
++------+-------+----------+------------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE text4(
+    ->     num1 FLOAT(6,2),
+    ->     num2 DOUBLE(6,2),
+    ->     num3 DECIMAL(6,2)
+    -> );
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> SELECT * FROM text4
+    -> ;
+Empty set (0.00 sec)
+
+mysql> DESC text4;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| num1  | float(6,2)   | YES  |     | NULL    |       |
+| num2  | double(6,2)  | YES  |     | NULL    |       |
+| num3  | decimal(6,2) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT text4 VALUES(3.1415,3.1415,3.1415);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> SELECT * FROM text4;
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
++------+------+------+
+1 row in set (0.00 sec)
+
+mysql> SHOW WARNINGS;
+Empty set (0.00 sec)
+
+mysql> INSERT text4 VALUES(3.2495,3.2495,3.2495);
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+mysql> SHOW WARNINGS;
++-------+------+-------------------------------------------+
+| Level | Code | Message                                   |
++-------+------+-------------------------------------------+
+| Note  | 1265 | Data truncated for column 'num3' at row 1 |
++-------+------+-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM text4;
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
+| 3.25 | 3.25 | 3.25 |
++------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> -- 查询表中的某一个值
+mysql> SELECT * FROM text4 WHERE num3=3.14;
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
++------+------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM text4 WHERE num2=3.14;
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
++------+------+------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM text4 WHERE num1=3.14;
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
++------+------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM text4 WHERE num1='3.14';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM text4 WHERE num3='3.14';
++------+------+------+
+| num1 | num2 | num3 |
++------+------+------+
+| 3.14 | 3.14 | 3.14 |
++------+------+------+
+1 row in set (0.00 sec)
+
+mysql> \t
